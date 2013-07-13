@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" type="text/css" media ="screen"/> <!--(rel)Tells the browser this is a stylesheet. (href) url_for is a flask function. Use it when you need to link something to another thing, for instance, when you need to send a user to a different page. Look at documentation for this. More portable path. (type)MIME type. Also tells the browser it's a stylesheet. There are two because it's old, and dif browsers have worked with tags differently. -->
 		<title>Vote Up</title>
 	</head>
 	<body>
-		
-		<h2>{{title}}by{{user_id}}</h2>
-		<h2>{{body}}</h2>
-		<h2>{{created_at}}</h2>
+		<h1>Which are the best pets?</h1>
+		{% for post in all_posts %}
+		<h2>{{post.title}}</h2> 
+		<p>by {{post.email}} {{post.created_at}}</p>
+		<p>{{post.body}}</p>
+		{% endfor %}
 	</body>
 
 </html>

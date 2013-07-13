@@ -4,18 +4,14 @@ import model
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/") # display all posts on the index page
 def index():
-    pass
+	model.connect_to_db() # connect to database, using code from model
+	# do I need the post id?
+	# what exactly is happening here?
+	posts = model.get_all_posts()
 
-@app.route("/post")
-def post():
-	
-    post = model.get_post()
-    return render_template("index.html", title = post.title,
-										user_id = post.user_id,
-										body = post.body,
-                                        created_at = post.created_at)
+	return render_template("index.html", all_posts = posts)
 
 if __name__=="__main__":
 	app.run(debug=True)
